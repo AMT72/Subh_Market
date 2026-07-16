@@ -10,6 +10,8 @@ This repository currently contains **only the Day-1 scaffold**: project structur
 
 A single deployable Express app composed of independent feature modules. Each module owns its own models, services, and routes, and is registered in `src/app.js`.
 
+> **Canonical schema file**: [`schema.sql`](./schema.sql) — one self-contained PostgreSQL/Supabase file with all 33 tables, foreign keys, indexes, enums and check constraints. Use it directly in Supabase SQL Editor or `psql -f schema.sql`.
+
 ```
 src/
 ├── config/                  # environment, database, logger
