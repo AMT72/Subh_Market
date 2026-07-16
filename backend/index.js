@@ -46,12 +46,17 @@ import createNotificationRoutes from './platform/notifications.js';
 import createAuditLogRoutes from './platform/auditLogs.js';
 // auth
 import createOtpRoutes from './auth/otpRoutes.js';
+// ai
+import createAiRoutes from '../modules/ai/routes/aiRoutes.js';
 
 export function createApiRouter({ models }) {
   const api = Router();
 
   // auth (phone OTP)
   api.use('/auth/otp', createOtpRoutes({ models }));
+
+  // ai (semantic product search)
+  api.use('/ai', createAiRoutes({ models }));
 
   // catalog
   api.use('/categories', createCategoryRoutes({ models }));
