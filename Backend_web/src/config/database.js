@@ -2,7 +2,8 @@
  * Database connection & model loader for Subh Backend.
  * Configured for Railway + Supabase with IPv4 enforcement and mandatory SSL.
  */
-import { Sequelize } from 'sequelize';
+import { Sequelize, DataTypes } from 'sequelize';
+import { initModels } from '../database/models/index.js';
 import env from './env.js';
 import logger from './logger.js';
 
@@ -76,7 +77,10 @@ export async function bootDatabase() {
   await testDatabaseConnection();
 
   // جلب النماذج المسجلة
-  const models = sequelize.models || {};
+  const models = initModels(sequelize, DataTypes);
+
+console.log('Returned models:', Object.keys(models));
+console.log('Sequelize models:', Object.keys(sequelize.models));
 
   // تفعيل العلاقات بين الـ Models إذا كانت معرفة
   Object.values(models).forEach((model) => {
